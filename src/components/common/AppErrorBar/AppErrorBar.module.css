@@ -1,0 +1,6 @@
+.alertErr {
+    position: fixed;
+    z-index: 5;
+    bottom: 0;
+    width: 360px;
+}

@@ -11,16 +11,16 @@ import {Error404} from "../common/Error404/Error404";
 import {Dialogs} from "../Dialogs/Dialogs";
 import {Friends} from "../Friends/Friends";
 
-export const LOGIN = "login"
+export const LOGIN = "/login"
 export const MY_PAGE = "/"
-export const USERS = "users"
-export const DIALOGS = "dialogs"
-export const NEWS = "news"
-export const PROFILE = "profile"
-export const SETTINGS = "settings"
-export const MUSIC = "music"
-export const FRIENDS = "friends"
-export const ERROR_404 = "404"
+export const USERS = "/users"
+export const DIALOGS = "/dialogs"
+export const NEWS = "/news"
+export const PROFILE = "/profile"
+export const SETTINGS = "/settings"
+export const MUSIC = "/music"
+export const FRIENDS = "/friends"
+export const ERROR_404 = "/404"
 
 export const Routing = () => {
     return (

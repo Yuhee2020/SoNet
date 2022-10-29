@@ -7,17 +7,22 @@ import {AppErrorBar} from "../components/common/AppErrorBar/AppErrorBar";
 import {useAppDispatch, useAppSelector} from "../store/store";
 import {initializeAppTC} from "../store/reducers/appReducer";
 import "./App.css"
+import {InitSpin} from "../components/common/InitSpin/InitSpin";
+import {getAppStatus, getIsInitialized} from "./appSelectors";
 
 
 const App: React.FC = () => {
-    const isInitialized = useAppSelector(state => state.app.isInitialized)
+
+    const isInitialized = useAppSelector(getIsInitialized)
+    const appStatus = useAppSelector(getAppStatus)
+
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(initializeAppTC())
-    }, [])
+    }, [dispatch])
 
-    if (!isInitialized){return <div className="spin"><Spin tip={"Loading..."} size={"large"}/></div>}
-        return (
+    if (!isInitialized){return <InitSpin/>}
+        return (<Spin spinning={appStatus==="loading"} wrapperClassName="spin" size={"large"}>
             <Layout>
                 <MyHeader/>
                 <Layout hasSider>
@@ -26,6 +31,7 @@ const App: React.FC = () => {
                 </Layout>
                 <AppErrorBar/>
             </Layout>
+            </Spin>
         );
 }
 

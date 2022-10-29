@@ -41,7 +41,6 @@ export const logoutTC = createAsyncThunk("app/logout", async (params, {dispatch,
 })
 
 export const initializeAppTC = createAsyncThunk("app/initializeApp", async (params, {dispatch, rejectWithValue}) => {
-    dispatch(setAppStatus({status: "loading"}))
     try{
         const res=await authAPI.authMe()
         if (res.data.resultCode === 0) {
@@ -54,7 +53,6 @@ export const initializeAppTC = createAsyncThunk("app/initializeApp", async (para
         dispatch(setAppError({error: error.message}))
         return rejectWithValue(null)
     } finally {
-        dispatch(setAppStatus({status: "idle"}))
         dispatch(setInitialized({value: true}))
     }
 })

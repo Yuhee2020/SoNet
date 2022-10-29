@@ -8,16 +8,13 @@ import s from "./Login.module.css"
 import {validate} from "./validation";
 import {MY_PAGE} from "../Content/Routing";
 import {Navigate} from "react-router-dom";
+import {getIsLoggedIn} from "./loginSelectors";
 
 
 export const Login = () => {
 
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
-
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
-    };
+    const isLoggedIn = useAppSelector(getIsLoggedIn)
 
     const formik = useFormik({
         initialValues: {
@@ -42,7 +39,6 @@ export const Login = () => {
             name="normal_login"
             className={s.loginForm}
             initialValues={{remember: true}}
-            onFinish={onFinish}
         >
             <Form.Item
                 help={formik.touched.email && !!formik.errors.email ? formik.errors.email : " "}

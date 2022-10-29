@@ -3,10 +3,12 @@ import thunkMiddleware, {ThunkAction, ThunkDispatch,} from "redux-thunk";
 import {configureStore} from "@reduxjs/toolkit";
 import {appReducer} from "./reducers/appReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {usersReducer} from "./reducers/usersReducer";
 
 
 export const rootReducer = combineReducers({
-    app:appReducer
+    app:appReducer,
+    users:usersReducer
 })
 export const store = configureStore({
     reducer: rootReducer,

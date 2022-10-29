@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
-import {usersAPI, UserType} from "../../api/soNetApi";
+import {followAPI, usersAPI, UserType} from "../../api/soNetApi";
 import {setAppError, setAppStatus} from "./appReducer";
 import {StateType} from "../store";
 
@@ -28,6 +28,47 @@ export const getUsers = createAsyncThunk("users/getUsers", async (params, {
     }
 })
 
+export const follow = createAsyncThunk("users/follow", async (params:{userId:number}, {
+    dispatch,
+    rejectWithValue
+}) => {
+    dispatch(setAppStatus({status: "loading"}))
+    try {
+        const res = await followAPI.follow(params.userId)
+        if (res.data.resultCode === 0) {
+          dispatch(getUsers())
+        } else {
+            dispatch(setAppError({error: res.data.messages[0]}))
+        }
+    } catch (err) {
+        const error = err as AxiosError
+        dispatch(setAppError({error: error.message}))
+        return rejectWithValue(null)
+    } finally {
+        dispatch(setAppStatus({status: "idle"}))
+    }
+})
+
+export const unfollow = createAsyncThunk("users/unFollow", async (params:{userId:number}, {
+    dispatch,
+    rejectWithValue
+}) => {
+    dispatch(setAppStatus({status: "loading"}))
+    try {
+        const res = await followAPI.unfollow(params.userId)
+        if (res.data.resultCode === 0) {
+            dispatch(getUsers())
+        } else {
+            dispatch(setAppError({error: res.data.messages[0]}))
+        }
+    } catch (err) {
+        const error = err as AxiosError
+        dispatch(setAppError({error: error.message}))
+        return rejectWithValue(null)
+    } finally {
+        dispatch(setAppStatus({status: "idle"}))
+    }
+})
 
 const initialState = {
     users: [] as UserType[],
@@ -50,8 +91,8 @@ export const slice = createSlice({
         setPage(state, action: PayloadAction<{ page: number }>) {
             state.paramsForRes.page = action.payload.page
         },
-        setIsFriend(state, action: PayloadAction<{ isFriend: boolean }>) {
-            state.paramsForRes.friend = action.payload.isFriend
+        setIsFriend(state, action: PayloadAction<{ isFriends: boolean | null}>) {
+            state.paramsForRes.friend = action.payload.isFriends
         },
         setTerm(state, action: PayloadAction<{ term: string }>) {
             state.paramsForRes.term = action.payload.term

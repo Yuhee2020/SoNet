@@ -23,6 +23,7 @@ export const UsersPagination = () => {
             defaultPageSize={count}
             onChange={onChange}
             style={{margin: "24px"}}
+            showSizeChanger
             pageSizeOptions={[5, 10, 50, 100]}
         />
     );

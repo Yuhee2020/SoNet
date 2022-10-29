@@ -27,6 +27,18 @@ export const usersAPI = {
     }
 }
 
+export const followAPI = {
+    follow(userId:number) {
+        return instance.post<ResponseType>(`follow/${userId}`, {})
+    },
+    unfollow(userId:number) {
+        return instance.delete<ResponseType>(`follow/${userId}`)
+    },
+    isFollowed(userId:string) {
+        return instance.get<boolean>(`follow/${userId}`)
+    }
+}
+
 export type LoginDataType = {
     email: string,
     password: string,
@@ -44,7 +56,7 @@ export type getUsersParamsType = {
     count?: number
     page?: number
     term?: string | null
-    friends?: boolean | null
+    friend?: boolean | null
 }
 
 export type GetUsersResponseType = {

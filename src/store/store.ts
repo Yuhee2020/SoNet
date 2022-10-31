@@ -4,11 +4,13 @@ import {configureStore} from "@reduxjs/toolkit";
 import {appReducer} from "./reducers/appReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {usersReducer} from "./reducers/usersReducer";
+import {profileReducer} from "./reducers/profileReducer";
 
 
 export const rootReducer = combineReducers({
     app:appReducer,
-    users:usersReducer
+    users:usersReducer,
+    profile:profileReducer,
 })
 export const store = configureStore({
     reducer: rootReducer,

@@ -3,6 +3,8 @@ import {Avatar, Divider, List} from "antd";
 import {AddRemoveButton} from "../AddRemoveButton/AddRemoveButton";
 import {UserType} from "../../../api/soNetApi";
 import {useAppSelector} from "../../../store/store";
+import {NavLink} from "react-router-dom";
+
 
 type PropsType={
     user:UserType
@@ -18,7 +20,7 @@ export const User: React.FC<PropsType> = ({user}) => {
         >
             <List.Item.Meta
                 avatar={<Avatar size={"large"} src={user.photos.small? user.photos.small: 'https://joeschmoe.io/api/v1/random'} />}
-                title={<a href={'https://ant.design'}>{user.name}</a>}
+                title={<NavLink to={`/profile/${user.id}`}>{user.name}</NavLink>}
                 description={user.status? user.status: "No status"}
             />
             {isLoggedIn && <AddRemoveButton user={user}/>}

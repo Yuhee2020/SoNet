@@ -39,6 +39,12 @@ export const followAPI = {
     }
 }
 
+export const profileAPI={
+    getProfile(userId:number){
+        return instance.get<ProfileType>(`profile/${userId}`)
+    }
+}
+
 export type LoginDataType = {
     email: string,
     password: string,
@@ -75,4 +81,29 @@ export type UserType = {
     }
     status: null | string
     uniqueUrlName: null | string
+}
+
+
+export type ProfileType = {
+	aboutM: null | string
+	contacts: ContactsType
+	lookingForAJob: boolean
+	lookingForAJobDescription: null | string
+	fullName: string
+	userId: number
+	photos: ProfilePhotoType;
+}
+export type ContactsType = {
+	facebook: null | string
+	website: null | string
+	vk:null | string
+	twitter: null | string
+	instagram: null | string
+	youtube: null | string
+	github: null | string
+	mainLink: null | string
+}
+export type ProfilePhotoType = {
+	small: null | string
+	large: null | string
 }

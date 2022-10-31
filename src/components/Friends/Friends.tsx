@@ -6,6 +6,7 @@ import {getIsLoggedIn} from "../Login/loginSelectors";
 import {Users} from "../Users/Users";
 
 export const Friends = () => {
+
     const isLoggedIn=useAppSelector(getIsLoggedIn)
 
     if (!isLoggedIn) {

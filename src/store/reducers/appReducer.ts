@@ -27,7 +27,7 @@ export const logoutTC = createAsyncThunk("app/logout", async (params, {dispatch,
     try {
         const res = await authAPI.logout()
         if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedIn({value: false, myId:null}))
+            dispatch(setIsLoggedIn({value: false, myId:0}))
         } else {
             handleServerAppError(res.data, dispatch)
         }
@@ -62,7 +62,7 @@ const initialState = {
     error: null as null | string,
     isLoggedIn: false,
     isInitialized: false,
-    myId:null as null | number
+    myId:0
 }
 
 export const slice = createSlice({
@@ -75,7 +75,7 @@ export const slice = createSlice({
         setAppError(state, action: PayloadAction<{ error: null | string }>) {
             state.error = action.payload.error
         },
-        setIsLoggedIn(state, action: PayloadAction<{ value: boolean, myId:number | null }>) {
+        setIsLoggedIn(state, action: PayloadAction<{ value: boolean, myId:number}>) {
             state.isLoggedIn = action.payload.value
             state.myId=action.payload.myId
         },

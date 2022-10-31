@@ -16,7 +16,7 @@ export const MY_PAGE = "/"
 export const USERS = "/users"
 export const DIALOGS = "/dialogs"
 export const NEWS = "/news"
-export const PROFILE = "/profile"
+export const PROFILE = "/profile/:userId"
 export const SETTINGS = "/settings"
 export const MUSIC = "/music"
 export const FRIENDS = "/friends"
@@ -34,8 +34,8 @@ export const Routing = () => {
             <Route path={SETTINGS} element={<Settings/>}/>
             <Route path={LOGIN} element={<Login/>}/>
             <Route path={FRIENDS} element={<Friends/>}/>
-            <Route path={ERROR_404} element={<Error404/>}/>
-            <Route path="*" element={<Navigate to={"404"}/>}/>
+            {/*<Route path={ERROR_404} element={<Error404/>}/>*/}
+            {/*<Route path="*" element={<Navigate to={"404"}/>}/>*/}
         </Routes>
     );
 };

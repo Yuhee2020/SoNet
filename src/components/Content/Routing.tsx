@@ -34,8 +34,8 @@ export const Routing = () => {
             <Route path={SETTINGS} element={<Settings/>}/>
             <Route path={LOGIN} element={<Login/>}/>
             <Route path={FRIENDS} element={<Friends/>}/>
-            {/*<Route path={ERROR_404} element={<Error404/>}/>*/}
-            {/*<Route path="*" element={<Navigate to={"404"}/>}/>*/}
+            <Route path={ERROR_404} element={<Error404/>}/>
+            <Route path="*" element={<Navigate to={"404"}/>}/>
         </Routes>
     );
 };

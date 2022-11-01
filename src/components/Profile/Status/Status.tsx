@@ -1,16 +1,15 @@
 import React from 'react';
-import {Badge, Card, Image, Space} from "antd";
-import noPhoto from "../../../img/no_image.jpg";
+import {Badge, Card} from "antd";
 
-type PropsType={
-    status:string
+type PropsType = {
+    status: string
 }
 
-export const Status:React.FC<PropsType> = ({status}) => {
+export const Status: React.FC<PropsType> = ({status}) => {
     return (
-        <Badge.Ribbon text={"Status"} color="purple">
+        <Badge.Ribbon text={"EditableStatus"} color="purple">
             <Card bordered={false} size="small" style={{width: 200, paddingTop: 20}}>
-                {status ? status : "No status"}
+                <span>{status ? status : "No status"}</span>
             </Card>
         </Badge.Ribbon>
     );

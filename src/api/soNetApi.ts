@@ -46,6 +46,9 @@ export const profileAPI= {
     getStatus(userId: number) {
         return instance.get(`profile/status/${userId}`)
     },
+    changeStatus(status:string) {
+        return instance.put<{status:string}, AxiosResponse<ResponseType>>(`profile/status`,{status})
+    },
 }
 
 export type LoginDataType = {

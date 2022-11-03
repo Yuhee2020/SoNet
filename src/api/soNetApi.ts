@@ -49,6 +49,9 @@ export const profileAPI= {
     changeStatus(status:string) {
         return instance.put<{status:string}, AxiosResponse<ResponseType>>(`profile/status`,{status})
     },
+    changeProfileInfo(profile:ChangeProfileType) {
+        return instance.put<ChangeProfileType, AxiosResponse<ResponseType>>(`profile/`,profile)
+    },
 }
 
 export type LoginDataType = {
@@ -91,25 +94,33 @@ export type UserType = {
 
 
 export type ProfileType = {
-	aboutMe?: null | string
-	contacts?: ContactsType
-	lookingForAJob?: boolean
-	lookingForAJobDescription?: null | string
-	fullName?: string
-	userId?: number
-	photos?: ProfilePhotoType;
+	aboutMe: string
+	contacts: ContactsType
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	userId: number
+	photos: ProfilePhotoType;
 }
 export type ContactsType = {
-	facebook?: null | string
-	website?: null | string
-	vk?:null | string
-	twitter?: null | string
-	instagram?: null | string
-	youtube?: null | string
-	github?: null | string
-	mainLink?: null | string
+	facebook:  string
+	website:  string
+	vk:string
+	twitter: string
+	instagram:string
+	youtube: string
+	github: string
+	mainLink: string
 }
 export type ProfilePhotoType = {
 	small?: null | string
 	large?: null | string
+}
+
+export type ChangeProfileType={
+    aboutMe?: null | string
+    contacts?: ContactsType
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: null | string
+    fullName?: string
 }

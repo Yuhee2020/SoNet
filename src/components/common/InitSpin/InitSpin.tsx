@@ -1,9 +1,10 @@
 import React from 'react';
 import {Spin} from "antd";
+import s from "./InitSpin.module.css"
 
 export const InitSpin = () => {
     return (
-        <div style={{padding:"40vh", textAlign:"center"}}><Spin tip={"Loading..."} size={"large"}/></div>
+        <div className={s.spin}><Spin tip={"Loading..."} size={"large"}/></div>
     );
 };
 

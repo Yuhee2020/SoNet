@@ -28,9 +28,9 @@ const items: MenuProps['items'] = [
     icon: React.createElement(el.icon),
     label: <NavLink to={el.path}>{el.title}</NavLink>,
 }));
-
+const mediaQuery = window.matchMedia('(max-width: 700px)')
 export const NaviBar = () => {
-    return <Sider  className={s.sider} style={{marginTop: 64, height: '100vh', position: 'fixed',}} >
+    return <Sider className={s.sider} collapsed={mediaQuery.matches} style={{marginTop: 64, height: '100vh', position: 'fixed'}} >
         <Menu
             items={items}
             mode="inline"

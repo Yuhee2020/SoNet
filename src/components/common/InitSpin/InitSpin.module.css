@@ -1,0 +1,12 @@
+
+.spin{
+    padding: 40vh;
+    text-align: center;
+}
+
+@media(max-width: 450px) {
+    .spin{
+        padding: 40%;
+        text-align: center;
+    }
+}

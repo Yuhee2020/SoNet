@@ -45,8 +45,6 @@ export const initializeAppTC = createAsyncThunk("app/initializeApp", async (para
         const res=await authAPI.authMe()
         if (res.data.resultCode === 0) {
             dispatch(setIsLoggedIn({value: true,myId:res.data.data.id}))
-        } else {
-            handleServerAppError(res.data, dispatch)
         }
     }catch (err) {
         const error = err as AxiosError

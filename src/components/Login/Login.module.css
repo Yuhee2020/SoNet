@@ -3,10 +3,27 @@
 
 }
 
+.cardLogin{
+
+}
+
 .loginFormButton {
     width: 100%;
 }
 
 .logText{
     text-align: center;
+}
+
+body {
+    background-color: plum;
+}
+@media (max-width: 450px) {
+    .loginForm {
+        width: 220px;
+
+    }
+    .cardLogin{
+        width: 280px;
+    }
 }

@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../store/store";
 import {useParams} from "react-router-dom";
 import {getMyId, getUserProfile, getUserStatus} from "./profileSelectors";
 import {getProfile} from "../../store/reducers/profileReducer";
-import {Badge, Card, Image, Space,} from "antd";
+import {Image, Space,} from "antd";
 import noPhoto from "../../img/no_image.jpg"
 import {Description} from "./Description/Description";
 import {EditableStatus} from "./Status/EditableStatus";
@@ -23,11 +23,11 @@ export const Profile = () => {
     }, [])
     return (
         <div>
-            <Space  size={"large"} direction={"horizontal"} wrap>
-                <Space direction={"vertical"} size={"middle"}>
+            <Space size={"large"} style={{display:"flex", justifyContent:"flex-start", flexWrap:"wrap"}} >
+                <Space direction={"vertical"} size={"middle"} style={{marginRight:30}}>
                     <Image width={200} src={profile.photos?.large ? profile.photos.large : noPhoto}/>
                     {userId ? <Status status={status}/> : <EditableStatus status={status}/>}
-                    <ChangeAboutMeModal/>
+                    <ChangeAboutMeModal profile={profile}/>
                 </Space>
                 <Description profile={profile}/>
             </Space>

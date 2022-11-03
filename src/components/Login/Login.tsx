@@ -32,7 +32,7 @@ export const Login = () => {
         return <Navigate to={MY_PAGE}/>
     }
 
-    return (<Card  title={"LOGIN"}>
+    return (<Card  title={"LOGIN"} className={s.cardLogin} >
             <Form
             size={"large"}
             onSubmitCapture={formik.handleSubmit}

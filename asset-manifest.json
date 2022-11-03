@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/sonet/static/css/main.18b8b385.css",
-    "main.js": "/sonet/static/js/main.d4a6a598.js",
-    "static/js/496.8bf5f389.chunk.js": "/sonet/static/js/496.8bf5f389.chunk.js",
-    "static/media/no_image.jpg": "/sonet/static/media/no_image.16383d75015c94d025d1.jpg",
-    "index.html": "/sonet/index.html",
-    "main.18b8b385.css.map": "/sonet/static/css/main.18b8b385.css.map",
-    "main.d4a6a598.js.map": "/sonet/static/js/main.d4a6a598.js.map",
-    "496.8bf5f389.chunk.js.map": "/sonet/static/js/496.8bf5f389.chunk.js.map"
+    "main.css": "/SoNet/static/css/main.18b8b385.css",
+    "main.js": "/SoNet/static/js/main.76ad9d38.js",
+    "static/js/496.8bf5f389.chunk.js": "/SoNet/static/js/496.8bf5f389.chunk.js",
+    "static/media/no_image.jpg": "/SoNet/static/media/no_image.16383d75015c94d025d1.jpg",
+    "index.html": "/SoNet/index.html",
+    "main.18b8b385.css.map": "/SoNet/static/css/main.18b8b385.css.map",
+    "main.76ad9d38.js.map": "/SoNet/static/js/main.76ad9d38.js.map",
+    "496.8bf5f389.chunk.js.map": "/SoNet/static/js/496.8bf5f389.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.18b8b385.css",
-    "static/js/main.d4a6a598.js"
+    "static/js/main.76ad9d38.js"
   ]
 }

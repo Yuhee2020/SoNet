@@ -19,22 +19,10 @@ export const Description: React.FC<PropsType> = ({profile}) => {
             </Descriptions>
             <Divider style={{borderColor:"#001529"}}/>
             <Descriptions title="Contacts">
-                <Descriptions.Item
-                    label={<b>VK</b>}>{profile.contacts?.vk ? profile.contacts.vk : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>GitHub</b>}>{profile.contacts?.github ? profile.contacts.github : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>Facebook</b>}>{profile.contacts?.facebook ? profile.contacts.facebook : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>{<b>Twitter</b>}</b>}>{profile.contacts?.twitter ? profile.contacts.twitter : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>Instagram</b>}>{profile.contacts?.instagram ? profile.contacts.instagram : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>{<b>Website</b>}</b>}>{profile.contacts?.website ? profile.contacts.website : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>YouTube</b>}>{profile.contacts?.youtube ? profile.contacts.youtube : "No info"}</Descriptions.Item>
-                <Descriptions.Item
-                    label={<b>MainLink</b>}>{profile.contacts?.mainLink ? profile.contacts.youtube : "No info"}</Descriptions.Item>
+                {profile.contacts && Object.entries(profile.contacts).map(el=>{
+                    return <Descriptions.Item key={el[0]}
+                        label={<b>{el[0]}</b>}>{el[1] ? el[1] : "No info"}</Descriptions.Item>
+                })}
             </Descriptions>
         </div>
     );

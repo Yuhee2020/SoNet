@@ -14,7 +14,9 @@
     width: 120px;
     height: 31px;
     margin: 16px 24px 16px 0;
-    background: rgba(255, 255, 255, 0.3);
+    background-image: url("../../img/logo1-removebg-preview.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .logout {

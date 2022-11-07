@@ -90,6 +90,30 @@ export const changeProfileInfo = createAsyncThunk("profile/changeProfileInfo", a
     }
 })
 
+export const changeMyPhoto = createAsyncThunk("profile/changeMyPhoto", async (params:{photo:FormData} , {
+    dispatch,getState,
+    rejectWithValue
+}) => {
+    dispatch(setAppStatus({status: "loading"}))
+    try {
+        const state=getState() as StateType
+        const myId=state.app.myId
+        const res = await profileAPI.changeMyPhoto(params.photo)
+        if (res.data.resultCode === 0) {
+            dispatch(getProfile({userId:myId}))
+            return res.data
+        } else {
+            dispatch(setAppError({error: res.data.messages[0]}))
+        }
+    } catch (err) {
+        const error = err as AxiosError
+        dispatch(setAppError({error: error.message}))
+        return rejectWithValue(null)
+    } finally {
+        dispatch(setAppStatus({status: "idle"}))
+    }
+})
+
 const initialState = {
     profile: {} as ProfileType,
     status: ""

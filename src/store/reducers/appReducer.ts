@@ -9,8 +9,11 @@ export const loginTC = createAsyncThunk("app/login", async (params: LoginDataTyp
     try {
         const res = await authAPI.login(params)
         if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedIn({value: true, myId:res.data.data.userId}))
-        } else {
+            dispatch(setIsLoggedIn({value: true, myId: res.data.data.userId}))
+        } else if(res.data.resultCode===10){
+            dispatch (getCaptcha())
+        }
+        else {
             handleServerAppError(res.data, dispatch)
         }
     } catch (err) {
@@ -27,7 +30,7 @@ export const logoutTC = createAsyncThunk("app/logout", async (params, {dispatch,
     try {
         const res = await authAPI.logout()
         if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedIn({value: false, myId:0}))
+            dispatch(setIsLoggedIn({value: false, myId: 0}))
         } else {
             handleServerAppError(res.data, dispatch)
         }
@@ -41,12 +44,12 @@ export const logoutTC = createAsyncThunk("app/logout", async (params, {dispatch,
 })
 
 export const initializeAppTC = createAsyncThunk("app/initializeApp", async (params, {dispatch, rejectWithValue}) => {
-    try{
-        const res=await authAPI.authMe()
+    try {
+        const res = await authAPI.authMe()
         if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedIn({value: true,myId:res.data.data.id}))
+            dispatch(setIsLoggedIn({value: true, myId: res.data.data.id}))
         }
-    }catch (err) {
+    } catch (err) {
         const error = err as AxiosError
         dispatch(setAppError({error: error.message}))
         return rejectWithValue(null)
@@ -55,12 +58,28 @@ export const initializeAppTC = createAsyncThunk("app/initializeApp", async (para
     }
 })
 
+export const getCaptcha = createAsyncThunk("app/getCaptcha", async (params, {dispatch, rejectWithValue}) => {
+    dispatch(setAppStatus({status: "loading"}))
+    try {
+        const res = await authAPI.getCaptcha()
+        return res.data.url
+    } catch (err) {
+        const error = err as AxiosError
+        dispatch(setAppError({error: error.message}))
+        return rejectWithValue(null)
+    } finally {
+        dispatch(setAppStatus({status: "idle"}))
+    }
+})
+
 const initialState = {
     appStatus: "idle" as AppStatusType,
     error: null as null | string,
     isLoggedIn: false,
     isInitialized: false,
-    myId:0
+    myId: 0,
+    captcha:"",
+    theme:"light"
 }
 
 export const slice = createSlice({
@@ -73,17 +92,30 @@ export const slice = createSlice({
         setAppError(state, action: PayloadAction<{ error: null | string }>) {
             state.error = action.payload.error
         },
-        setIsLoggedIn(state, action: PayloadAction<{ value: boolean, myId:number}>) {
+        setIsLoggedIn(state, action: PayloadAction<{ value: boolean, myId: number }>) {
             state.isLoggedIn = action.payload.value
-            state.myId=action.payload.myId
+            state.myId = action.payload.myId
+            state.captcha=""
         },
         setInitialized(state, action: PayloadAction<{ value: boolean }>) {
             state.isInitialized = action.payload.value
         },
+        setTheme(state, action: PayloadAction<{theme: ThemeType }>) {
+            state.theme = action.payload.theme
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getCaptcha.fulfilled, (state, action) => {
+            if (action.payload) {
+                state.captcha = action.payload
+            }
+        });
     }
 })
 
+
 export const appReducer = slice.reducer
-export const {setAppStatus, setAppError, setIsLoggedIn, setInitialized} = slice.actions
+export const {setAppStatus, setAppError, setIsLoggedIn, setInitialized, setTheme} = slice.actions
 
 export type AppStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+export type ThemeType = "light" | "dark"

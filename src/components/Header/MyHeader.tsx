@@ -12,7 +12,7 @@ export function MyHeader() {
     const logout=()=>{
         dispatch(logoutTC())
     }
-    return <Header className={s.header}>
+    return <Header className={s.header} style={{paddingLeft:"30px"}}>
         <div className={s.logo}/>
             <div className={s.logout}>
                 {isLoggedIn && <Button onClick={logout} size={"small"} icon={<LogoutOutlined />}>Logout</Button>}

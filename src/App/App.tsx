@@ -23,7 +23,7 @@ const App: React.FC = () => {
 
     if (!isInitialized){return <InitSpin/>}
         return (<Spin spinning={appStatus==="loading"} wrapperClassName="spin" size={"large"}>
-            <Layout>
+            <Layout >
                 <MyHeader/>
                 <Layout hasSider>
                     <NaviBar/>

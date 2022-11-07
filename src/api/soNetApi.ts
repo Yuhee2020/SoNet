@@ -18,6 +18,9 @@ export const authAPI = {
     },
     authMe() {
         return instance.get<ResponseType<{ id: number, email: string, login: string }>>("auth/me")
+    },
+    getCaptcha(){
+        return instance.get<{url:string}>("security/get-captcha-url")
     }
 }
 
@@ -52,13 +55,16 @@ export const profileAPI= {
     changeProfileInfo(profile:ChangeProfileType) {
         return instance.put<ChangeProfileType, AxiosResponse<ResponseType>>(`profile/`,profile)
     },
+    changeMyPhoto(photo:FormData) {
+        return instance.put<{photo:any}, AxiosResponse<ResponseType<{small:string,large:string}>>>(`profile/photo`,photo)
+    },
 }
 
 export type LoginDataType = {
     email: string,
     password: string,
     rememberMe?: boolean,
-    captcha?: boolean
+    captcha?: string
 }
 
 export type ResponseType<D = {}> = {

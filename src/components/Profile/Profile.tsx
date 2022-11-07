@@ -9,6 +9,7 @@ import {Description} from "./Description/Description";
 import {EditableStatus} from "./Status/EditableStatus";
 import {Status} from "./Status/Status";
 import {ChangeAboutMeModal} from "../MyPage/ChangeAboutMeModal/ChangeAboutMeModal";
+import {ChangeMyPhoto} from "./ChangeMyPhoto/ChangeMyPhoto";
 
 
 export const Profile = () => {
@@ -20,14 +21,18 @@ export const Profile = () => {
 
     useEffect(() => {
         dispatch(getProfile({userId: (userId ? +userId : myId)}))
-    }, [])
+    }, [userId])
     return (
         <div>
             <Space size={"large"} style={{display:"flex", justifyContent:"flex-start", flexWrap:"wrap"}} >
                 <Space direction={"vertical"} size={"middle"} style={{marginRight:30}}>
                     <Image width={200} src={profile.photos?.large ? profile.photos.large : noPhoto}/>
-                    {userId ? <Status status={status}/> : <EditableStatus status={status}/>}
-                    <ChangeAboutMeModal profile={profile}/>
+                    {userId
+                        ? <Status status={status}/>
+                        : <><ChangeMyPhoto/>
+                            <EditableStatus status={status}/>
+                            <ChangeAboutMeModal profile={profile}/>
+                        </>}
                 </Space>
                 <Description profile={profile}/>
             </Space>

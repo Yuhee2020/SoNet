@@ -7,7 +7,7 @@ type PropsType = {
 
 export const Status: React.FC<PropsType> = ({status}) => {
     return (
-        <Badge.Ribbon text={"EditableStatus"} color="purple">
+        <Badge.Ribbon text={"Status"} color="purple">
             <Card bordered={false} size="small" style={{width: 200, paddingTop: 20}}>
                 <span>{status ? status : "No status"}</span>
             </Card>

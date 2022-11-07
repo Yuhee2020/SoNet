@@ -53,7 +53,7 @@ export const ChangeAboutMeModal: React.FC<PropsType> = ({profile}) => {
 
     return (
         <>
-            <Button type="primary"  block ghost onClick={showModal}>
+            <Button  block  onClick={showModal}>
                Change my info
             </Button>
             <Modal title="My info" open={isModalOpen} onOk={handleOk} okText={"Change info"} onCancel={handleCancel}>

@@ -1,10 +1,17 @@
-.content {
+.light {
     padding: 24px;
     margin: 64px 0 0;
     display: flex;
     justify-content: center;
 }
 
-.layout {
-
+.dark {
+    padding: 24px;
+    margin: 64px 0 0;
+    display: flex;
+    justify-content: center;
+    background-color: #cccccc;
 }
+
+
+

@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/SoNet/static/css/main.18b8b385.css",
-    "main.js": "/SoNet/static/js/main.76ad9d38.js",
+    "main.css": "/SoNet/static/css/main.db26c5c8.css",
+    "main.js": "/SoNet/static/js/main.abccae52.js",
     "static/js/496.8bf5f389.chunk.js": "/SoNet/static/js/496.8bf5f389.chunk.js",
+    "static/media/logo1-removebg-preview.png": "/SoNet/static/media/logo1-removebg-preview.7ccbe67b2850273ace45.png",
     "static/media/no_image.jpg": "/SoNet/static/media/no_image.16383d75015c94d025d1.jpg",
     "index.html": "/SoNet/index.html",
-    "main.18b8b385.css.map": "/SoNet/static/css/main.18b8b385.css.map",
-    "main.76ad9d38.js.map": "/SoNet/static/js/main.76ad9d38.js.map",
+    "main.db26c5c8.css.map": "/SoNet/static/css/main.db26c5c8.css.map",
+    "main.abccae52.js.map": "/SoNet/static/js/main.abccae52.js.map",
     "496.8bf5f389.chunk.js.map": "/SoNet/static/js/496.8bf5f389.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.18b8b385.css",
-    "static/js/main.76ad9d38.js"
+    "static/css/main.db26c5c8.css",
+    "static/js/main.abccae52.js"
   ]
 }

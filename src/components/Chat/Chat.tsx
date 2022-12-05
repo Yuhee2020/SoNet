@@ -7,35 +7,32 @@ import s from "./Chat.module.css"
 
 
 export const Chat = () => {
-const [wsChannel, setWsChannel]=useState<WebSocket | null>(null)
+    const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
 
 
-    useEffect(()=>{
-        function createChannel(){
-            let ws= new WebSocket("wss://social-network.samuraijs.com/handlers/ChatHandler.ashx")
+    useEffect(() => {
+        let ws: WebSocket
+        function createChannel() {
+            ws = new WebSocket("wss://social-network.samuraijs.com/handlers/ChatHandler.ashx")
             ws.addEventListener("message", (e) => {
                 let messages: ChatMessageType[] = JSON.parse(e.data)
                 dispatch(setChatMessages({messages}))
                 console.log(messages)
             })
-            ws.addEventListener("close", ()=>{
-                setTimeout(createChannel,3000)
+            ws.addEventListener("close", () => {
+                setTimeout(createChannel, 3000)
                 console.log("Close")
             })
             setWsChannel(ws)
         }
+
         createChannel()
-    } ,[])
+        return ()=>{
+            ws.close()
+        }
+    }, [])
 
     const dispatch = useAppDispatch()
-
-    // useEffect(() => {
-    //     wsChannel.addEventListener("message", (e) => {
-    //         let messages: ChatMessageType[] = JSON.parse(e.data)
-    //         dispatch(setChatMessages({messages}))
-    //         console.log(messages)
-    //     })
-    // }, [])
 
     return (
         <div className={s.chatPage}>

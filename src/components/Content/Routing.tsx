@@ -10,6 +10,7 @@ import {Login} from "../Login/Login";
 import {Error404} from "../common/Error404/Error404";
 import {Dialogs} from "../Dialogs/Dialogs";
 import {Friends} from "../Friends/Friends";
+import {Chat} from "../Chat/Chat";
 
 export const LOGIN = "/login"
 export const MY_PAGE = "/"
@@ -20,6 +21,7 @@ export const PROFILE = "/profile/:userId"
 export const SETTINGS = "/settings"
 export const MUSIC = "/music"
 export const FRIENDS = "/friends"
+export const CHAT = "/chat"
 export const ERROR_404 = "/404"
 
 export const Routing = () => {
@@ -34,6 +36,7 @@ export const Routing = () => {
             <Route path={SETTINGS} element={<Settings/>}/>
             <Route path={LOGIN} element={<Login/>}/>
             <Route path={FRIENDS} element={<Friends/>}/>
+            <Route path={CHAT} element={<Chat/>}/>
             <Route path={ERROR_404} element={<Error404/>}/>
             <Route path="*" element={<Navigate to={"404"}/>}/>
         </Routes>

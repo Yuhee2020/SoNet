@@ -22,6 +22,7 @@ const App: React.FC = () => {
     }, [dispatch])
 
     if (!isInitialized){return <InitSpin/>}
+
         return (<Spin spinning={appStatus==="loading"} wrapperClassName="spin" size={"large"}>
             <Layout >
                 <MyHeader/>

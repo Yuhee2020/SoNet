@@ -5,12 +5,14 @@ import {appReducer} from "./reducers/appReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {usersReducer} from "./reducers/usersReducer";
 import {profileReducer} from "./reducers/profileReducer";
+import {chatReducer} from "./reducers/chatReducer";
 
 
 export const rootReducer = combineReducers({
     app:appReducer,
     users:usersReducer,
     profile:profileReducer,
+    chat:chatReducer
 })
 export const store = configureStore({
     reducer: rootReducer,

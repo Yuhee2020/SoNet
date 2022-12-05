@@ -2,12 +2,21 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {chatAPI} from "../../api/chatApi";
 
 
-export const startMessagesListening= createAsyncThunk("chat/startMessagesListening", async (params:{userId:number}, {
+
+const newMessagehandler=(messages:ChatMessageType[])=>{
+    (setChatMessages({messages}))
+}
+
+export const startMessagesListening= createAsyncThunk("chat/startMessagesListening", async (params, {
     dispatch,
 }) => {
-    chatAPI.subscribe((messages)=>{
-            dispatch(setChatMessages({messages}))
-        })
+    chatAPI.subscribe(newMessagehandler)
+})
+
+export const stopMessagesListening= createAsyncThunk("chat/stopMessagesListening", async (params, {
+    dispatch,
+}) => {
+    chatAPI.unsubscribe(newMessagehandler)
 })
 
 const initialState = {

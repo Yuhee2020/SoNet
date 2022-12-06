@@ -3,17 +3,17 @@ import TextArea from "antd/es/input/TextArea";
 import {Button} from "antd";
 import s from "../Chat.module.css"
 import {SendOutlined} from '@ant-design/icons';
+import {useAppDispatch} from "../../../store/store";
+import {sendMessage} from "../../../store/reducers/chatReducer";
 
-type PropsType={
-    wsChannel:WebSocket | null
-}
 
-export const AddChatMessageForm = ({wsChannel}:PropsType) => {
+export const AddChatMessageForm = () => {
+    const dispatch = useAppDispatch()
     const [newChatMessage, setNewChatMessage] = useState("")
 
-    const sendMessage = () => {
+    const onSendMessageClick = () => {
         if (!newChatMessage) return
-        wsChannel?.send(newChatMessage)
+        dispatch(sendMessage({message: newChatMessage}))
         setNewChatMessage("")
     }
 
@@ -27,7 +27,7 @@ export const AddChatMessageForm = ({wsChannel}:PropsType) => {
                     setNewChatMessage(e.currentTarget.value)
                 }}
             />
-            <Button onClick={sendMessage} style={{marginTop: "5px"}}>
+            <Button onClick={onSendMessageClick} style={{marginTop: "5px"}}>
                 Send
                 <SendOutlined/>
             </Button>
